@@ -1,0 +1,15 @@
+#Any time we use docker we need superuser permissions
+sudo: required
+
+# Added docker in services , so travise understands we need docker cli pre installed
+services:
+  - docker
+
+# Series of steps to run before our tests
+before_install:
+  - docker build -t raghav/docker-react -f Dockerfile.dev .
+
+#All the command needs to be excuted when our tests actually ran just like before_install
+script:
+#Coverage is written so that npm run test exits after showing results automatically
+  - docker run raghav/docker-react npm run test -- --coverage
