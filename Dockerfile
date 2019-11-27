@@ -8,4 +8,5 @@ RUN npm run build
 # Single block will have single statement
 
 FROM nginx
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
